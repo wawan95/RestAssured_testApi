@@ -110,5 +110,23 @@ public class UserApiTest {
             .body("title", notNullValue())
             .body("body", notNullValue());
     }
+    @Test
+    void shouldReturnNotFoundForUnknownUser() {
+        given()
+            .baseUri(BASE_URL)
+        .when()
+            .get("/users/999999")
+        .then()
+            .statusCode(404);
+    }
 
+    @Test
+    void shouldReturnNotFoundForUnknownPost() {
+        given()
+            .baseUri(BASE_URL)
+        .when()
+            .get("/posts/9999998")
+        .then()
+            .statusCode(404);
+    }
 }
